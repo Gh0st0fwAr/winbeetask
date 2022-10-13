@@ -15,7 +15,7 @@
             <div class="search__icon"></div>
          </div>
          <div class="body__blocks">
-            <block v-for="(item, index) in paginatedData" :class="{ 'block--active' : blockOnFocus === index }" @click="graphOnFocus = true" @deleteBlock="deleteBlock" @blockClicked="processBlock" :index="index + (pageNumber * 6)" :id="item.index" :name="item.name" :value="item.value" class="blocks__wrapper"></block>
+            <block v-for="(item, index) in paginatedData" :class="{ 'block--active' : blockOnFocus === item.index }" @click="graphOnFocus = true" @deleteBlock="deleteBlock" @blockClicked="processBlock" :index="index + (pageNumber * 6)" :id="item.index" :name="item.name" :value="item.value" class="blocks__wrapper"></block>
             <div v-if="graphOnFocus && windowWidth <= 460" :style="`grid-row:${graphCoords}`" class="body__graph">
                <div v-for="item in graphData" :style="calculateBarStyle(item)" class="graph__bar">
                   <div class="graph__hover">{{item}}$</div>
@@ -108,6 +108,7 @@ export default {
                   name: this.searchCrypto,
                   value: 0
                })
+               this.searchCrypto = ''
                this.redrawList();
             } else if (r.data.Response == 'Error') {
                this.searchCrypto = ''
@@ -127,9 +128,13 @@ export default {
       },
       prevPage() {
          this.pageNumber--;
+         this.blockOnFocus = '';
+         this.graphOnFocus = '';
       },
       nextPage() {
          this.pageNumber++;
+         this.blockOnFocus = '';
+         this.graphOnFocus = '';
       },
       processBlock(index) {
          this.changeGraphPosition(index);
@@ -140,6 +145,7 @@ export default {
          S.splice('dataList', id, 1);
          this.graphData = [];
          this.blockOnFocus = '';
+         this.graphOnFocus = '';
          this.redrawList();
       },
       changeGraphPosition(index) {
