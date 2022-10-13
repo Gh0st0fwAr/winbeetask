@@ -15,7 +15,7 @@
             <div class="search__icon"></div>
          </div>
          <div class="body__blocks">
-            <block v-for="(item, index) in paginatedData" :class="{ 'block--active' : blockOnFocus === item.index }" @click="graphOnFocus = true" @deleteBlock="deleteBlock" @blockClicked="processBlock" :index="index + (pageNumber * 6)" :id="item.index" :name="item.name" :value="item.value" class="blocks__wrapper"></block>
+            <block v-for="(item, index) in paginatedData" :class="{ 'block--active' : blockOnFocus === item.index }" @click="graphOnFocus = true" @deleteBlock="deleteBlock" @blockClicked="processBlock" :index="index" :id="item.index" :name="item.name" :value="item.value" class="blocks__wrapper"></block>
             <div v-if="graphOnFocus && windowWidth <= 460" :style="`grid-row:${graphCoords}`" class="body__graph">
                <div v-for="item in graphData" :style="calculateBarStyle(item)" class="graph__bar">
                   <div class="graph__hover">{{item}}$</div>
@@ -136,9 +136,9 @@ export default {
          this.blockOnFocus = '';
          this.graphOnFocus = '';
       },
-      processBlock(index) {
+      processBlock(id, index) {
          this.changeGraphPosition(index);
-         this.blockOnFocus = index;
+         this.blockOnFocus = id;
       },
       deleteBlock(id) {
          // console.log(id)

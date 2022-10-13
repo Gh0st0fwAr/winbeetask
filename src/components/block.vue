@@ -1,5 +1,5 @@
 <template>
-   <div @click="$emit('block-clicked', id)" class="block">
+   <div @click="$emit('block-clicked', id, index)" class="block">
       <div class="block__title">{{name}}</div>
       <div class="block__price">{{value}}$</div>
       <div @click.stop="$emit('delete-block', id)" class="block__icon"></div>    
