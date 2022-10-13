@@ -1,0 +1,58 @@
+
+body,
+html {
+	height: 100%;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+
+button {
+	border: 0;
+	cursor: pointer;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+li {
+	list-style: none;
+
+}
+
+a {
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+	margin: 0;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	cursor: pointer;
+}
+
+img {
+	display: block;
+}
